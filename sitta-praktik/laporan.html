@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan - Sistem Pemesanan Bahan Ajar UT</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <img src="images/Logo_universitas_terbuka.png" alt="Logo UT" class="navbar-logo">
+                <h1>Laporan Transaksi</h1>
+            </div>
+            <div class="user-info">
+                <button class="btn-logout" onclick="goBack()">← Kembali</button>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </nav>
+
+        <div class="dashboard-content">
+            <!-- Summary Cards -->
+            <div class="detail-grid" style="margin-bottom: 30px;">
+                <div class="detail-item" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <label style="color: rgba(255,255,255,0.9);">Total Transaksi</label>
+                    <strong id="totalTransaksi" style="font-size: 32px; color: white;">0</strong>
+                </div>
+                <div class="detail-item" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white;">
+                    <label style="color: rgba(255,255,255,0.9);">Total Pendapatan</label>
+                    <strong id="totalPendapatan" style="font-size: 32px; color: white;">Rp 0</strong>
+                </div>
+                <div class="detail-item" style="background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%); color: white;">
+                    <label style="color: rgba(255,255,255,0.9);">Rata-rata Transaksi</label>
+                    <strong id="rataTransaksi" style="font-size: 32px; color: white;">Rp 0</strong>
+                </div>
+                <div class="detail-item" style="background: linear-gradient(135deg, #17a2b8 0%, #138496 100%); color: white;">
+                    <label style="color: rgba(255,255,255,0.9);">Total Bahan Terjual</label>
+                    <strong id="totalBahan" style="font-size: 32px; color: white;">0</strong>
+                </div>
+            </div>
+
+            <!-- Laporan Berdasarkan Status -->
+            <div class="tracking-container">
+                <h2 style="margin-bottom: 20px; color: #333;">📊 Laporan Berdasarkan Status</h2>
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <label>Terkirim</label>
+                        <strong id="statusTerkirim" style="font-size: 24px; color: #28a745;">0</strong>
+                        <p id="nilaiTerkirim" style="color: #666; margin-top: 5px; font-size: 14px;">Rp 0</p>
+                    </div>
+                    <div class="detail-item">
+                        <label>Sedang Dikirim</label>
+                        <strong id="statusDikirim" style="font-size: 24px; color: #ffc107;">0</strong>
+                        <p id="nilaiDikirim" style="color: #666; margin-top: 5px; font-size: 14px;">Rp 0</p>
+                    </div>
+                    <div class="detail-item">
+                        <label>Diproses</label>
+                        <strong id="statusDiproses" style="font-size: 24px; color: #17a2b8;">0</strong>
+                        <p id="nilaiDiproses" style="color: #666; margin-top: 5px; font-size: 14px;">Rp 0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Laporan Detail Transaksi -->
+            <div class="tracking-container" style="margin-top: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="color: #333;">📋 Detail Semua Transaksi</h2>
+                    <button class="btn-add" onclick="exportToCSV()">📥 Export CSV</button>
+                </div>
+                
+                <!-- Filter -->
+                <div style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                    <select 
+                        id="filterStatus" 
+                        style="padding: 10px; border: 2px solid #e0e0e0; border-radius: 8px;"
+                        onchange="filterLaporan()"
+                    >
+                        <option value="">Semua Status</option>
+                        <option value="Terkirim">Terkirim</option>
+                        <option value="Sedang Dikirim">Sedang Dikirim</option>
+                        <option value="Diproses">Diproses</option>
+                    </select>
+                    
+                    <input 
+                        type="text" 
+                        id="searchLaporan" 
+                        placeholder="Cari berdasarkan nama atau nomor DO..."
+                        style="flex: 1; min-width: 200px; padding: 10px; border: 2px solid #e0e0e0; border-radius: 8px;"
+                        onkeyup="filterLaporan()"
+                    >
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Tanggal</th>
+                                <th>No. DO</th>
+                                <th>Nama Mahasiswa</th>
+                                <th>Jumlah Bahan</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="laporanTable">
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/laporan.js"></script>
+</body>
+</html>

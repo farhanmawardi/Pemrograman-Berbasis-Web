@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking Pengiriman - Sistem Pemesanan Bahan Ajar UT</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <img src="images/Logo_universitas_terbuka.png" alt="Logo UT" class="navbar-logo">
+                <h1>Tracking Pengiriman</h1>
+            </div>
+            <div class="user-info">
+                <button class="btn-logout" onclick="goBack()">← Kembali</button>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </nav>
+
+        <div class="dashboard-content">
+            <div class="tracking-container">
+                <h2 style="margin-bottom: 20px; color: #333;">🔍 Lacak Pengiriman Bahan Ajar</h2>
+                
+                <!-- Search Box -->
+                <div class="search-box">
+                    <input 
+                        type="text" 
+                        id="searchDO" 
+                        placeholder="Masukkan Nomor Delivery Order (contoh: DO2025001)"
+                    >
+                    <button class="btn-search" onclick="searchTracking()">Cari</button>
+                </div>
+
+                <!-- Alert Message -->
+                <div id="alertMessage" class="alert"></div>
+
+                <!-- Tracking Result -->
+                <div id="trackingResult" class="tracking-result">
+                    <!-- Result Header -->
+                    <div class="result-header">
+                        <h3 id="resultNoDO">-</h3>
+                        <p id="resultMahasiswa">-</p>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progressBar" style="width: 0%">
+                            <span id="progressText">0%</span>
+                        </div>
+                    </div>
+
+                    <!-- Details Grid -->
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <label>Status Pengiriman</label>
+                            <strong id="detailStatus">-</strong>
+                        </div>
+                        <div class="detail-item">
+                            <label>Ekspedisi</label>
+                            <strong id="detailEkspedisi">-</strong>
+                        </div>
+                        <div class="detail-item">
+                            <label>Tanggal Kirim</label>
+                            <strong id="detailTanggal">-</strong>
+                        </div>
+                        <div class="detail-item">
+                            <label>Jenis Paket</label>
+                            <strong id="detailJenisPaket">-</strong>
+                        </div>
+                        <div class="detail-item">
+                            <label>Total Pembayaran</label>
+                            <strong id="detailTotal">-</strong>
+                        </div>
+                    </div>
+
+                    <!-- Timeline -->
+                    <div class="timeline">
+                        <h4>📍 Riwayat Pengiriman</h4>
+                        <div id="timelineContainer">
+                            <!-- Timeline items will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- List All Tracking -->
+            <div class="tracking-container" style="margin-top: 20px;">
+                <h2 style="margin-bottom: 20px; color: #333;">📋 Daftar Semua Pengiriman</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No. DO</th>
+                                <th>Nama Mahasiswa</th>
+                                <th>Status</th>
+                                <th>Progress</th>
+                                <th>Tanggal Kirim</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="allTrackingTable">
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/tracking.js"></script>
+</body>
+</html>

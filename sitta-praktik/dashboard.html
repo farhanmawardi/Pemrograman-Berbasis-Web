@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Sistem Pemesanan Bahan Ajar UT</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <img src="images/Logo_universitas_terbuka.png" alt="Logo UT" class="navbar-logo">
+                <h1>Dashboard UT</h1>
+            </div>
+            <div class="user-info">
+                <span id="userName">User</span>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </nav>
+
+        <div class="dashboard-content">
+            <!-- Greeting Card -->
+            <div class="greeting-card">
+                <h2 id="greeting">Selamat Datang</h2>
+                <p id="currentDate">Loading...</p>
+            </div>
+
+            <!-- Menu Grid -->
+            <div class="menu-grid">
+                <div class="menu-card" onclick="navigateTo('stok.html')">
+                    <div class="icon">📚</div>
+                    <h3>Informasi Bahan Ajar</h3>
+                    <p>Lihat dan kelola stok bahan ajar</p>
+                </div>
+
+                <div class="menu-card" onclick="navigateTo('tracking.html')">
+                    <div class="icon">📦</div>
+                    <h3>Tracking Pengiriman</h3>
+                    <p>Lacak status pengiriman bahan ajar</p>
+                </div>
+
+                <div class="menu-card" onclick="navigateTo('laporan.html')">
+                    <div class="icon">📊</div>
+                    <h3>Laporan</h3>
+                    <p>Lihat laporan transaksi dan statistik</p>
+                </div>
+            </div>
+
+            <!-- Monitoring Progress DO -->
+            <div class="tracking-container">
+                <h2 style="margin-bottom: 20px; color: #333;">📈 Monitoring Progress DO Bahan Ajar</h2>
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <label>Total DO Bulan Ini</label>
+                        <strong style="font-size: 24px; color: #667eea;">5</strong>
+                    </div>
+                    <div class="detail-item">
+                        <label>DO Terkirim</label>
+                        <strong style="font-size: 24px; color: #28a745;">2</strong>
+                    </div>
+                    <div class="detail-item">
+                        <label>DO Dalam Pengiriman</label>
+                        <strong style="font-size: 24px; color: #ffc107;">2</strong>
+                    </div>
+                    <div class="detail-item">
+                        <label>DO Diproses</label>
+                        <strong style="font-size: 24px; color: #17a2b8;">1</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rekap Bahan Ajar -->
+            <div class="tracking-container">
+                <h2 style="margin-bottom: 20px; color: #333;">📋 Rekap Bahan Ajar</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Kategori</th>
+                                <th>Jumlah Jenis</th>
+                                <th>Total Stok</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rekapTable">
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Histori Transaksi -->
+            <div class="tracking-container">
+                <h2 style="margin-bottom: 20px; color: #333;">🕒 Histori Transaksi Bahan Ajar</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tanggal</th>
+                                <th>No. DO</th>
+                                <th>Nama Mahasiswa</th>
+                                <th>Jumlah Bahan</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historiTable">
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

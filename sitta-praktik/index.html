@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Pemesanan Bahan Ajar - Universitas Terbuka</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .landing-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 50px;
+            text-align: center;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .logo {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        h1 {
+            color: #667eea;
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .features {
+            text-align: left;
+            margin: 40px 0;
+            padding: 30px;
+            background: #f5f7fa;
+            border-radius: 15px;
+        }
+        
+        .features h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .feature-item .icon {
+            font-size: 24px;
+            margin-right: 15px;
+        }
+        
+        .btn-start {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-start:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.6);
+        }
+        
+        .credentials {
+            margin-top: 30px;
+            padding: 20px;
+            background: #fff3cd;
+            border-radius: 10px;
+            border: 2px solid #ffc107;
+        }
+        
+        .credentials h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .credentials p {
+            color: #856404;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .landing-container {
+                padding: 30px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .logo {
+                font-size: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-container">
+        <img src="images/Logo_universitas_terbuka.png" alt="Logo Universitas Terbuka" class="logo" style="width: 120px; height: auto; animation: none; margin-bottom: 20px;">
+        <h1>Sistem Pemesanan Bahan Ajar</h1>
+        <p class="subtitle">
+            Universitas Terbuka<br>
+            Kelola pemesanan, tracking pengiriman, dan laporan bahan ajar dengan mudah
+        </p>
+        
+        <div class="features">
+            <h3>✨ Fitur Aplikasi</h3>
+            <div class="feature-item">
+                <span class="icon">📚</span>
+                <span>Manajemen Stok Bahan Ajar</span>
+            </div>
+            <div class="feature-item">
+                <span class="icon">📦</span>
+                <span>Tracking Pengiriman Real-time</span>
+            </div>
+            <div class="feature-item">
+                <span class="icon">📊</span>
+                <span>Laporan Transaksi & Statistik</span>
+            </div>
+            <div class="feature-item">
+                <span class="icon">🔐</span>
+                <span>Sistem Login Aman</span>
+            </div>
+            <div class="feature-item">
+                <span class="icon">📱</span>
+                <span>Responsive & User-Friendly</span>
+            </div>
+        </div>
+        
+        <button class="btn-start" onclick="window.location.href='login.html'">
+            Mulai Sekarang →
+        </button>
+        
+        <div class="credentials">
+            <h4>🔑 Akun Demo untuk Testing</h4>
+            <p><strong>Email:</strong> rina@ut.ac.id | <strong>Password:</strong> rina123 | <strong>Role:</strong> UPBJJ Jakarta</p>
+            <p><strong>Email:</strong> agus@ut.ac.id | <strong>Password:</strong> agus123 | <strong>Role:</strong> UPBJJ Makassar</p>
+            <p><strong>Email:</strong> siti@ut.ac.id | <strong>Password:</strong> siti123 | <strong>Role:</strong> Puslaba</p>
+            <p><strong>Email:</strong> doni@ut.ac.id | <strong>Password:</strong> doni123 | <strong>Role:</strong> Fakultas FISIP</p>
+            <p><strong>Email:</strong> admin@ut.ac.id | <strong>Password:</strong> admin123 | <strong>Role:</strong> Administrator</p>
+        </div>
+        
+        <div class="footer">
+            © 2025 Universitas Terbuka. All Rights Reserved.
+        </div>
+    </div>
+</body>
+</html>

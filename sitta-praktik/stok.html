@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stok Bahan Ajar - Sistem Pemesanan Bahan Ajar UT</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <img src="images/Logo_universitas_terbuka.png" alt="Logo UT" class="navbar-logo">
+                <h1>Informasi Stok Bahan Ajar</h1>
+            </div>
+            <div class="user-info">
+                <button class="btn-logout" onclick="goBack()">← Kembali</button>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </nav>
+
+        <div class="dashboard-content">
+            <div class="stock-container">
+                <div class="stock-header">
+                    <h2>📚 Data Stok Bahan Ajar</h2>
+                    <button class="btn-add" onclick="showAddForm()">+ Tambah Bahan Ajar</button>
+                </div>
+
+                <!-- Alert Message -->
+                <div id="alertMessage" class="alert"></div>
+
+                <!-- Add/Edit Form -->
+                <div id="formContainer" style="display: none; margin-bottom: 30px; padding: 20px; background: #f5f7fa; border-radius: 10px;">
+                    <h3 id="formTitle" style="margin-bottom: 20px; color: #333;">Tambah Bahan Ajar Baru</h3>
+                    <form id="bahanAjarForm">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                            <div class="form-group">
+                                <label for="kodeLokasi">Kode Lokasi</label>
+                                <input type="text" id="kodeLokasi" required placeholder="Contoh: 0JKT01">
+                            </div>
+                            <div class="form-group">
+                                <label for="kodeBarang">Kode Barang</label>
+                                <input type="text" id="kodeBarang" required placeholder="Contoh: EKMA4216">
+                            </div>
+                            <div class="form-group">
+                                <label for="namaBarang">Nama Bahan Ajar</label>
+                                <input type="text" id="namaBarang" required placeholder="Nama bahan ajar">
+                            </div>
+                            <div class="form-group">
+                                <label for="jenisBarang">Jenis Barang</label>
+                                <input type="text" id="jenisBarang" required placeholder="Contoh: BMP" value="BMP">
+                            </div>
+                            <div class="form-group">
+                                <label for="edisi">Edisi</label>
+                                <input type="text" id="edisi" required placeholder="Edisi">
+                            </div>
+                            <div class="form-group">
+                                <label for="stok">Stok</label>
+                                <input type="number" id="stok" required min="0" placeholder="Jumlah stok">
+                            </div>
+                            <div class="form-group">
+                                <label for="harga">Harga (Rp)</label>
+                                <input type="number" id="harga" required min="0" placeholder="Harga satuan">
+                            </div>
+                            <div class="form-group">
+                                <label for="cover">URL Cover</label>
+                                <input type="text" id="cover" placeholder="images/cover.jpg">
+                            </div>
+                        </div>
+                        <div style="margin-top: 20px; display: flex; gap: 10px;">
+                            <button type="submit" class="btn btn-primary" style="width: auto;">Simpan</button>
+                            <button type="button" class="btn-logout" onclick="hideForm()" style="width: auto;">Batal</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Search and Filter -->
+                <div style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Cari berdasarkan kode, nama, atau kategori..."
+                        style="flex: 1; min-width: 200px; padding: 10px; border: 2px solid #e0e0e0; border-radius: 8px;"
+                        onkeyup="filterTable()"
+                    >
+                    <select 
+                        id="filterKategori" 
+                        style="padding: 10px; border: 2px solid #e0e0e0; border-radius: 8px;"
+                        onchange="filterTable()"
+                    >
+                        <option value="">Semua Kategori</option>
+                    </select>
+                </div>
+
+                <!-- Statistics -->
+                <div class="detail-grid" style="margin-bottom: 30px;">
+                    <div class="detail-item">
+                        <label>Total Jenis Bahan Ajar</label>
+                        <strong id="totalJenis" style="font-size: 24px; color: #667eea;">0</strong>
+                    </div>
+                    <div class="detail-item">
+                        <label>Total Stok Keseluruhan</label>
+                        <strong id="totalStok" style="font-size: 24px; color: #28a745;">0</strong>
+                    </div>
+                    <div class="detail-item">
+                        <label>Stok Kritis (< 50)</label>
+                        <strong id="stokKritis" style="font-size: 24px; color: #dc3545;">0</strong>
+                    </div>
+                    <div class="detail-item">
+                        <label>Nilai Total Stok</label>
+                        <strong id="nilaiTotal" style="font-size: 24px; color: #667eea;">Rp 0</strong>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Cover</th>
+                                <th>Kode Barang</th>
+                                <th>Nama Bahan Ajar</th>
+                                <th>Kode Lokasi</th>
+                                <th>Jenis</th>
+                                <th>Edisi</th>
+                                <th>Stok</th>
+                                <th>Harga</th>
+                                <th>Status Stok</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="stokTable">
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/stok.js"></script>
+</body>
+</html>
